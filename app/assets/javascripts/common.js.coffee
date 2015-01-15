@@ -10,7 +10,7 @@ flashMsg = ->
 
 flashNow = (flag, msg) ->
   $('#flash-container').append(
-    "<div class= \"flash flash-" + flag + "\" data-dismiss=\"alert\">" + 
+    "<div class= \"flash flash-" + flag + "\" data-dismiss=\"alert\">" +
     "<div class=\"flash-message\">" + msg + "</div></div>"
   )
 
@@ -26,12 +26,12 @@ menuClick = ->
   $('#menu a, #menu-compact-list a').on 'click', () -> displayOverlay()
 
 activeVote = ->
-  $('.btn-votes a').on 'click', () -> 
+  $('.btn-votes a').on 'click', () ->
     $(this).not('.action-vote').addClass('active')
     $(this).siblings().removeClass('active')
 
 fayeSetup = ->
-  publisher = new Faye.Client('//' + window.publisher + '/faye')
+  publisher = new Faye.Client('https://' + window.publisher + '/faye')
 
   publisher.addExtension outgoing: (message, callback) ->
     message.ext = token: window.pubtoken if message.channel is '/meta/subscribe'

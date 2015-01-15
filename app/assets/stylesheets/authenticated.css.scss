@@ -152,6 +152,15 @@
         color: #256188;
       }
     }
+
+	.teamDropDown {
+		margin-left: -32px;
+		background-color: white;
+		position: absolute;
+		margin-top: 3px;
+		padding-left: 0px;
+		display: none;
+	  }
   }
 
   .stories {
@@ -193,7 +202,12 @@
       width: 30%;
     }
 
-    .story-unstarted, .story-unscheduled {
+    .story-unstarted {
+      background-color: #f4f4f4;
+      border-bottom: 1px solid #DDD;
+    }
+
+    .story-unscheduled {
       background-color: #E4EFF7;
       border-bottom: 1px solid #DDD;
     }

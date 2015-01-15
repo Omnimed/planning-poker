@@ -4,10 +4,26 @@ filterStories = ->
     filterState(this)
 
 filterState = (selector) ->
+  $('.story').hide()
+  $('.teamDropDown').hide()
   switch $(selector).prop('id')
     when 'filter-unestimated'
-      $('.story').not('.story-unestimated').hide()
       $('.story-unestimated').show()
+    when 'filter-tusken'
+      $(".story[class*='tusken']").show()
+      $(".teamDropDown[class*='tusken']").show()
+      if ($(".teamDropDown[class*='tusken'] #dropfilter-unestimated").hasClass('selected'))
+         $(".story").not('.story-unestimated').hide()
+    when 'filter-spc'
+      $(".story[class*='spc']").show()
+      $(".teamDropDown[class*='spc']").show()
+      if ($(".teamDropDown[class*='spc'] #dropfilter-unestimated").hasClass('selected'))
+         $(".story").not('.story-unestimated').hide()
+    when 'filter-riddlers'
+      $(".story[class*='riddlers']").show()
+      $(".teamDropDown[class*='riddlers']").show()
+      if ($(".teamDropDown[class*='riddlers'] #dropfilter-unestimated").hasClass('selected'))
+         $(".story").not('.story-unestimated').hide()
     else $('.story').show()
 
 selectCard = ->

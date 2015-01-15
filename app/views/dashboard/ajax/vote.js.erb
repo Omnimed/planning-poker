@@ -1,14 +1,8 @@
-<% broadcast '/planning-poker/story/add-vote' do %>
+<% @params =  j render('dashboard/stories/vote', story_id: @resource[:story_id], vote: false, user: @resource[:user], reveal: false) %>
 
-  if ($('.user-vote[data-vote="<%= @resource[:story_id] %>-<%= @resource[:user] %>"]').length) {
-    $('.user-vote[data-vote="<%= @resource[:story_id] %>-<%= @resource[:user] %>"]').remove();
-  }
-
-  $('#cards-<%= @resource[:story_id] %> ul').append(
-    "<%= j render('dashboard/stories/vote', story_id: @resource[:story_id], 
-    vote: false, user: @resource[:user], reveal: false) %>"
-  );
-
-  $('#vote-<%= @resource[:story_id] %> .reveal').removeAttr('disabled');
-  
-<% end %>
+publish('/planning-poker/story/add-vote',"if ($('.user-vote[data-vote=\"<%= @resource[:story_id] %>-<%= @resource[:user] %>\"]').length) {" +
+"$('.user-vote[data-vote=\"<%= @resource[:story_id] %>-<%= @resource[:user] %>\"]').remove();" +
+"}" +
+"$('#cards-<%= @resource[:story_id] %> ul').append(" +
+"\"<%= j @params.html_safe %>\");" +
+"$('#vote-<%= @resource[:story_id] %> .reveal').removeAttr('disabled');")

@@ -1,16 +1,14 @@
-<% broadcast '/planning-poker/story/reset-vote' do %>
+<% @params =  j render('dashboard/stories/vote', story_id: @resource[:story_id],
+      vote: nil, user: @resource[:user], reveal: false) %>
 
-  if ($('.user-vote[data-vote="<%= @resource[:story_id] %>-<%= current_user[:username] %>"]').length) {
-    $('.user-vote[data-vote="<%= @resource[:story_id] %>-<%= current_user[:username] %>"]').remove();
-  }
+publish('/planning-poker/story/reset-vote', "if ($('.user-vote[data-vote=\"<%= @resource[:story_id] %>-<%= @resource[:user] %>\"]').length) {" +
+    "$('.user-vote[data-vote=\"<%= @resource[:story_id] %>-<%= @resource[:user] %>\"]').remove();" +
+  "}" +
 
-  $('#cards-<%= @resource[:story_id] %> ul').append(
-    "<%= j render('dashboard/stories/vote', story_id: @resource[:story_id], 
-      vote: nil, user: @resource[:user], reveal: false) %>"
-  );
+  "$('#cards-<%= @resource[:story_id] %> ul').append(" +
+    "\"<%= j @params.html_safe %>\"" +
+  ");" +
 
-  $('#form-<%= @resource[:story_id] %>').find('input#estimate').val('');
+  "$('#form-<%= @resource[:story_id] %>').find('input#estimate').val('');" +
 
-  $('#vote-<%= @resource[:story_id] %> .reveal').attr('disabled','disabled');
-
-<% end %>
+  "$('#vote-<%= @resource[:story_id] %> .reveal').attr('disabled','disabled');")
