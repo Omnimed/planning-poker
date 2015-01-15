@@ -4,17 +4,17 @@
   $('#collapse-<%= @resource[:story_id] %>').closest('.story-detail').hide().siblings().show();
 <% end %>
 
-<% broadcast '/planning-poker/story/toggle-voters' do %>
-  <% if @resource[:toggle] == 'expand' %>
-    if (!$('.user-vote[data-vote="<%= @resource[:story_id] %>-<%= @resource[:user] %>"]').length) {
-      $('#cards-<%= @resource[:story_id] %> ul').append(
-        "<%= j render('dashboard/stories/vote', story_id: @resource[:story_id], 
-          vote: nil, user: @resource[:user], reveal: false) %>"
-      );
-    }
-  <% else %>
-    if ($('.user-vote[data-vote="<%= @resource[:story_id] %>-<%= current_user[:username] %>"] .card-blank').length) {
-      $('.user-vote[data-vote="<%= @resource[:story_id] %>-<%= current_user[:username] %>"]').remove();
-    }
-  <% end %>
+<% if @resource[:toggle] == 'expand' %>
+  <% @params =  j render('dashboard/stories/vote', story_id: @resource[:story_id], vote: nil, user: @resource[:user], reveal: false) %>
+
+  publish('/planning-poker/story/add-vote',"if (!$('.user-vote[data-vote=\"<%= @resource[:story_id] %>-<%= @resource[:user] %>\"]').length) {" +
+  "$('#cards-<%= @resource[:story_id] %> ul').append(" +
+  "\"<%= j @params.html_safe %>\"" +
+  ");" +
+  "}")
+<% else %>
+  publish('/planning-poker/story/toggle-voters', "if (!$('.user-vote[data-vote=\"<%= @resource[:story_id] %>-<%= @resource[:user] %>\"]').length) {" +
+      "$('#cards-<%= @resource[:story_id] %> ul').append(" +
+        "$('.user-vote[data-vote=\"<%= @resource[:story_id] %>-<%= @resource[:user] %>\"]').remove();" +
+    ")}")
 <% end %>

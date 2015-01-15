@@ -8,7 +8,7 @@ module DashboardHelper
     when 'release' then 'fa fa-flag-checkered green'
     else
       story.story_type
-    end 
+    end
   end
 
   def bar_icons(size)
@@ -31,11 +31,7 @@ module DashboardHelper
   end
 
   def estimation_class(story)
-    if type_chore?(story)
-      'unestimateable'
-    else
-      (story.estimate.to_i >= 0) ? 'estimated' : 'unestimated'
-    end
+    (story.estimate.to_i >= 0) ? 'estimated' : 'unestimated'
   end
 
   def state(story)
@@ -94,8 +90,7 @@ module DashboardHelper
   end
 
   def estimate_not_applicable?(story)
-    type_chore?(story) or
-    type_bug?(story)
+    false
   end
 
   def voting(vote)

@@ -28,8 +28,8 @@ PlanningPokerRails::Application.configure do
   # Publisher for push notification
   config.publisher = {
     # development faye server
-    domain: 'localhost:9292',
+    domain: 'test.omnimed.com',
     # secret key
-    secret: 'secret'
+    secret: 'ebb0df236382b1dd58fb912d00cecc50227b11f1bed0d87c2695260587d8b379e1c7adecb5278f6813d82fbc1af60acd15874df463ec1855a6c04b42355d6485'
   }
 end

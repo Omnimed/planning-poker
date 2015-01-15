@@ -34,5 +34,17 @@ class Vote
       vote.delete if vote
     end
 
+    def get(params)
+      vote = find_by(
+        user:     params[:user],
+        story_id: params[:story_id]
+      )
+      puts params[:user]
+      puts params[:story_id]
+      puts vote
+
+      return vote
+    end
+
   end
 end

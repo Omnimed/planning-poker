@@ -128,9 +128,9 @@ describe DashboardHelper do
 
   context '#estimate_not_applicable?' do
     ['chore', 'bug'].each do |type|
-      it 'should return true' do
+      it 'should return false' do
         story.story_type = type
-        helper.estimate_not_applicable?(story).should be_true
+        helper.estimate_not_applicable?(story).should be_false
       end
     end
 

@@ -35,11 +35,44 @@
 
     <div id="sub-menu" class="row">
       <ul>
-        <li id="filter-all" class="selected">
+        <li id="filter-all">
           <%= t('all').upcase %>
         </li>
-        <li id="filter-unestimated">
+        <li id="filter-unestimated" class="selected">
           <%= t('unestimated').upcase %>
+        </li>
+        <li id="filter-tusken">
+          <%= t('tusken').upcase %>
+	 <ul class="teamDropDown tusken">
+		<li id="dropfilter-all">
+		  <%= t('all').upcase %>
+		</li>
+		<li id="dropfilter-unestimated" class="selected">
+		  <%= t('unestimated').upcase %>
+		</li>
+         </ul>
+        </li>
+        <li id="filter-spc">
+          <%= t('spc').upcase %>
+	 <ul class="teamDropDown spc">
+		<li id="dropfilter-all">
+		  <%= t('all').upcase %>
+		</li>
+		<li id="dropfilter-unestimated" class="selected">
+		  <%= t('unestimated').upcase %>
+		</li>
+         </ul>
+        </li>
+        <li id="filter-riddlers">
+          <%= t('riddlers').upcase %>
+	 <ul class="teamDropDown riddlers">
+		<li id="dropfilter-all">
+		  <%= t('all').upcase %>
+		</li>
+		<li id="dropfilter-unestimated" class="selected">
+		  <%= t('unestimated').upcase %>
+		</li>
+         </ul>
         </li>
       </ul>
     </div>

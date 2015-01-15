@@ -14,6 +14,9 @@ en:
   signout:      "Sign Out"
   story:        "Story"
   unestimated:  "Unestimated"
+  tusken:       "Tusken"
+  spc:          "SPC"
+  riddlers:     "Riddlers"
 
   dashboard:
     empty:
